@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Suno AI Vs Mureka AI</title>
+    <style>
+        html, body, * {
+            font-family: 'Phetsarath OT', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .presentation-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            padding: 60px;
+            height: 100%;
+            overflow-y: auto;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            color: #555;
+            margin: 20px 0 15px 0;
+            background: linear-gradient(90deg, #f8f9ff, transparent);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #e8e9ff;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.3em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .pros, .cons {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .pros {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        
+        .cons {
+            background: linear-gradient(135deg, #5b0378 100%);
+            color: #fff; /* เปลี่ยน font เป็นสีขาว */
+        }
+        .cons h3 {
+            color: #111 !important;
+        }
+        .cons h4, .cons p, .cons ul, .cons li {
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">7</span>
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>🧠 AI Music Generator Comparison</h1>
+            <div style="text-align: center; margin-top: 50px;">
+                <!-- <div style="font-size: 6em; margin-bottom: 30px;">🎵</div> -->
+                <img src="logo topic present.png" alt="AI Music" style="height: 250px; margin-bottom: 30px;">
+                <h2 style="border: none; text-align: center; color: #667eea;">ການປຽບທຽບ 2 ແພລດຟອມ AI ສ້າງເພງທີ່ນິຍົມທີ່ສຸດ</h2>
+                <p style="font-size: 1.5em; color: #666; text-align: center; margin-top: 40px;">
+                    ທ. ສຸກສະຫວັດ  |       ນ. ປານີຊົງ        |       ທ. ສຸດທິສັກ
+                </p>
+            </div>
+        </div>
+        
+        <!-- Slide 2: What is AI Music Generator -->
+        <div class="slide">
+            <h2>🎧 AI Music Generator ເເມ່ນຫຍັງ?</h2>
+            
+            <p>ປັດຈຸບັນນີ້ ປັນຍາປະດິດ (AI) ໄດ້ເຂົ້າມາມີບົດບາດໃນຫຼາຍວຽກງານ ຕັ້ງແຕ່ການວິເຄາະຂໍ້ມູນ, ການແພດ, ຈົນເຖິງງານສິນລະປະເຊັ່ນເພງ ແລະ ດົນຕີ.</p>
+            
+            <div class="highlight">
+                <h3>🎯 ຄວາມໝາຍ</h3>
+                <p><strong>AI Music Generator</strong> ແມ່ນເຕັກໂນໂລຊີປັນຍາປະດິດທີ່ໃຊ້ສ້າງເພງຈາກ <strong>ຂໍ້ຄວາມ, ຄຳອະທິບາຍ ຫຼື ເນື້ອເພງ</strong> ໂດຍທີ່ຜູ້ໃຊ້ບໍ່ຈຳເປັນຕ້ອງມີທັກສະດ້ານດົນຕີ ກໍສາມາດສ້າງເພງໄດ້ດ້ວຍຕົນເອງ.</p>
+            </div>
+            
+            <h3>🎯 ຈຸດປະສົງການນຳສະເໜີ</h3>
+            <p>ເຮົາຈະນຳເອົາ 2 ແພລດຟອມ AI Music Generator ທີ່ນິຍົມທີ່ສຸດໃນປັດຈຸບັນ ຄື <strong>Suno AI</strong> ແລະ <strong>Mureka AI</strong> ມາປຽບທຽບໃນດ້ານຕ່າງໆ ເພື່ອໃຫ້ຜູ້ອ່ານສາມາດເຫັນຄວາມແຕກຕ່າງ ແລະ ເລືອກໃຊ້ໃຫ້ເໝາະກັບວັດຖຸປະສົງຂອງຕົນເອງ.</p>
+        </div>
+        
+        <!-- Slide 3: History -->
+        <div class="slide">
+            <h2>📜 ປະຫວັດຄວາມເປັນມາ</h2>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <!-- เปลี่ยน h3 เป็นรูป Suno -->
+                    <div style="text-align:center; margin-bottom:10px;">
+                        <img src="Suno logo.png" alt="Suno AI" style="height:50px;">
+                    </div>
+                    <p><strong> <br>ສັນຊາດ:</strong> ອາເມລິກາ</p>
+                    <p><strong>ຈຸດເດັ່ນ:</strong> ສ້າງເພງຈາກຂໍ້ຄວາມ (text-to-music) ໄດ້ໄວ ແລະ ງ່າຍ</p>
+                    <h4>ຟີເຈີຫຼັກ:</h4>
+                    <ul>
+                        <li>ຂຽນ prompt → ໄດ້ເພງເຕັມທັງດົນຕີແລະສຽງຮ້ອງ</li>
+                        <li>ມີໂໝດ Custom Vocal</li>
+                        <li>ເຮັດເພງແບບມີເນື້ອຮ້ອງໄດ້ງ່າຍ</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <!-- เปลี่ยน h3 เป็นรูป Mureka -->
+                    <div style="text-align:center; margin-bottom:10px;">
+                        <img src="Murela logo.png" alt="Mureka AI" style="height:50px;">
+                    </div>
+                    <p><strong> <br>ສັນຊາດ:</strong> ຍີ່ປຸ່ນ</p>
+                    <p><strong>ຈຸດເດັ່ນ:</strong> ເນັ້ນການໃຫ້ຜູ້ໃຊ້ສາມາດແກ້ໄຂແລະຈັດການເພງທີ່ສ້າງໄດ້ຫຼາຍຂຶ້ນ</p>
+                    <h4>ຟີເຈີຫຼັກ:</h4>
+                    <ul>
+                        <li>ສາມາດຄວບຄຸມສະເກລ, ໂທນ, ສະໄຕລ໌ ໄດ້ລະອຽດ</li>
+                        <li>ເນັ້ນຄຸນນະພາບສຽງເຄື່ອງດົນຕີທີ່ສົມຈິງ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Musical Quality Comparison -->
+        <div class="slide">
+            <h2>🎵 ຄຸນນະພາບດົນຕີ</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ດ້ານ</th>
+                        <th>Suno AI</th>
+                        <th>Mureka AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ໂຄງສ້າງ</strong></td>
+                        <td>ມີ verse, chorus, bridge ຄົບ</td>
+                        <td>ມີໂຄງສ້າງພື້ນຖານທີ່ຊັດເຈນ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ຄວາມຊັບຊ້ອນ</strong></td>
+                        <td>ມີລາຍລະອຽດ, ຈັງຫວະຫຼາກຫຼາຍ</td>
+                        <td>ຈັງຫວະດີ ແຕ່ຍັງທຳມະດາ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ແນວເພງ</strong></td>
+                        <td>ຮອງຮັບຫຼາຍແນວ Pop, Rock, Hip-hop, EDM</td>
+                        <td>ເນັ້ນແນວເພງງ່າຍໆ ຟັງສະບາຍ</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight">
+                <p><strong>✅ ສະຫຼຸບ:</strong> Suno ມີຄວາມຫຼາກຫຼາຍແລະຊັບຊ້ອນກວ່າ ໂດຍສະເພາະໃນເພງທີ່ມີຫຼາຍສ່ວນ</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Human-likeness -->
+        <div class="slide">
+            <h2>🎤 ຄວາມໃກ້ຄຽງກັບສຽງມະນຸດ</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ດ້ານ</th>
+                        <th>Suno AI</th>
+                        <th>Mureka AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ອາລົມສຽງຮ້ອງ</strong></td>
+                        <td>ຖ່າຍທອດອາລົມໄດ້ດີ, ໃກ້ຄຽງກັບຄົນ</td>
+                        <td>ເປັນສຽງສັງເຄາະຂາດ emotion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ເອກກະລັກສຽງ</strong></td>
+                        <td>ປັບ persona ສະເພາະບຸກຄົນໄດ້</td>
+                        <td>ມີ preset ສຽງນັກຮ້ອງແຕ່ຍັງບໍ່ລຶກ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ຄວາມເປັນທຳມະຊາດ</strong></td>
+                        <td>ສຽງຮ້ອງໃກ້ຄຽງຄົນຈິງ (ໃນເພງຊ້າ/ກາງ)</td>
+                        <td>ຍັງບໍ່ຜ່ານໃນເພງທີ່ເນັ້ນຄວາມລຶກຂອງອາລົມ</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight">
+                <p><strong>✅ ສະຫຼຸບ:</strong> <strong>Suno</strong> ດີກວ່າໃນເລື່ອງ "ຄວາມຮູ້ສຶກ" ແລະ "ຄວາມເປັນຄົນ"</p>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Pricing Comparison -->
+        <div class="slide">
+            <h2>💰 ການປຽບທຽບລາຄາ</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ລາຍການ</th>
+                        <th>Suno AI</th>
+                        <th>Mureka AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🆓 ໃຊ້ຟຣີ</strong></td>
+                        <td>10 ເພງ/ມື້ (ສ່ວນບຸກຄົນ)</td>
+                        <td>20 ເຄຣິດິດ (~2 ເພງ)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>💳 ຄ່າສະໝັກ</strong></td>
+                        <td>$8/ເດືອນ ≈ 170,000 LAK</td>
+                        <td>$10/ເດືອນ ≈ 213,000 LAK</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🎚️ ຈຳນວນເພງ</strong></td>
+                        <td>~500 ເພງ/ເດືອນ</td>
+                        <td>~400 ຄຣິດິດ/ເດືອນ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🧾 ລິຂະສິດ</strong></td>
+                        <td>ໃຊ້ໃນການຄ້າ (ຊື້ Pro ຂຶ້ນໄປ)</td>
+                        <td>ໄດ້ໃບຢືນຢັນເປັນເຈົ້າຂອງເພງ</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="pros-cons" style="margin-top: 30px;">
+                <div class="pros">
+                    <h3>✅ Suno</h3>
+                    <p>ເໝາະສໍາລັບການຜະລິດຈິງ</p>
+                </div>
+                <div class="cons">
+                    <h3>🔄 Mureka</h3>
+                    <p>ເໝາະສໍາລັບການທົດລອງ ແລະ ພັດທະນາ</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Conclusion -->
+        <div class="slide">
+            <h2>🧾 ສະຫຼຸບໂດຍລວມ</h2>
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>🌞 Suno AI</h3>
+                    <p>ເໝາະສໍາລັບຜູ່ທີ່ຕ້ອງການ:</p>
+                    <ul>
+                        <li>ສ້າງເພງທີ່ມີເນື້ອຮ້ອງ</li>
+                        <li>ສຽງຮ້ອງແບບຄົນຈິງ</li>
+                        <li>ຈັດຮູບແບບໄດ້ໄວ</li>
+                        <li>ເຂົ້າໃຈງ່າຍ</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h3>🎶 Mureka AI</h3>
+                    <p>ເໝາະສໍາລັບນັກສ້າງທີ່:</p>
+                    <ul>
+                        <li>ຕ້ອງການຄວບຄຸມລາຍລະອຽດເພງ</li>
+                        <li>ສິດການນຳໃຊ້ເພື່ອການຄ້າໄດ້ຢ່າງມັ່ນໃຈ</li>
+                        <li>ເນັ້ນຄຸນນະພາບສຽງເຄື່ອງດົນຕີ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Thank You -->
+        <div class="slide">
+            <div class="conclusion">
+                <h3>🎵 ຂໍຂອບໃຈ</h3>
+                <p>ຫວັງວ່າການນຳສະເໜີນີ້ຈະຊ່ວຍໃຫ້ທ່ານເລືອກ AI Music Generator ທີ່ເໝາະສົມກັບຄວາມຕ້ອງການຂອງທ່ານ</p>
+                <div style="font-size: 3em; margin-top: 20px;">🎼🎹🎸</div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◀ ກ່ອນໜ້າ</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">ຕໍ່ໄປ ▶</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Hide navigation on first slide
+            const nav = document.querySelector('.navigation');
+            if (currentSlide === 0) {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
+        
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
